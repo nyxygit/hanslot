@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>HanziSlot — Coverage Report</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      margin: 24px;
+      background: #f5f5f5;
+      color: #333;
+    }
+    h1 { color: #4A90D9; margin: 0 0 6px; }
+    p.subtitle { color: #666; margin: 0 0 20px; }
+    .stats { display: flex; gap: 14px; margin-bottom: 20px; flex-wrap: wrap; }
+    .stat {
+      background: #fff;
+      padding: 14px 22px;
+      border-radius: 12px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+      min-width: 150px;
+    }
+    .stat .num { font-size: 28px; font-weight: 700; color: #4A90D9; }
+    .stat .num.warn { color: #c62828; }
+    .stat .num.good { color: #2e7d32; }
+    .stat .label { font-size: 13px; color: #666; margin-top: 4px; }
+
+    input[type="text"] {
+      padding: 9px 14px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      width: 320px;
+      margin-bottom: 16px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+    th, td {
+      padding: 8px 14px;
+      text-align: left;
+      font-size: 14px;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    th {
+      background: #f0f0f0;
+      font-weight: 600;
+      color: #555;
+      position: sticky;
+      top: 0;
+    }
+    tr.gap { background: #fff5f5; }
+    td.count { text-align: right; font-weight: 700; }
+    td.count.zero { color: #c62828; }
+    td.count.low  { color: #b8860b; }
+    td.count.ok   { color: #2e7d32; }
+    td.qids { font-size: 12px; color: #888; max-width: 340px; }
+  </style>
+</head>
+<body>
+  <h1>HanziSlot — Coverage Report</h1>
+  <p class="subtitle">How often each HSK 1 word appears across your questions.</p>
+
+  <div class="stats" id="stats"></div>
+  <input type="text" id="filter" placeholder="Filter by hanzi, pinyin, or english…">
+
+  <table>
+    <thead>
+      <tr>
+        <th>Hanzi</th>
+        <th>Pinyin</th>
+        <th>English</th>
+        <th style="text-align:right">As answer</th>
+        <th style="text-align:right">As distractor</th>
+        <th style="text-align:right">Total</th>
+      </tr>
+    </thead>
+    <tbody id="tbody"></tbody>
+  </table>
+
+  <script src="data.js"></script>
+  <script>
+    // Tally per-word counts across the QUESTIONS array.
+    const counts = {};
+    for (const w of Object.keys(WORD_DATA)) {
+      counts[w] = { answer: 0, distractor: 0 };
+    }
+
+    for (const q of QUESTIONS) {
+      for (const slot of q.slots) {
+        if (slot.type !== "quiz") continue;
+        if (counts[slot.answer]) counts[slot.answer].answer++;
+        for (const opt of slot.options) {
+          if (opt !== slot.answer && counts[opt]) counts[opt].distractor++;
+        }
+      }
+    }
+
+    const rows = Object.entries(WORD_DATA).map(([hanzi, info]) => ({
+      hanzi, pinyin: info.pinyin, english: info.english,
+      answerCount: counts[hanzi].answer,
+      distractorCount: counts[hanzi].distractor,
+      total: counts[hanzi].answer + counts[hanzi].distractor
+    })).sort((a, b) =>
+      a.answerCount - b.answerCount || a.total - b.total || a.pinyin.localeCompare(b.pinyin)
+    );
+
+    const totalWords = rows.length;
+    const zero  = rows.filter(r => r.answerCount === 0).length;
+    const one   = rows.filter(r => r.answerCount === 1).length;
+    const good  = rows.filter(r => r.answerCount >= 2).length;
+
+    document.getElementById("stats").innerHTML = `
+      <div class="stat"><div class="num">${QUESTIONS.length}</div><div class="label">Total questions</div></div>
+      <div class="stat"><div class="num">${totalWords}</div><div class="label">Words in WORD_DATA</div></div>
+      <div class="stat"><div class="num ${zero > 0 ? 'warn' : 'good'}">${zero}</div><div class="label">Never as answer</div></div>
+      <div class="stat"><div class="num ${one > 0 ? 'warn' : 'good'}">${one}</div><div class="label">Only 1 question</div></div>
+      <div class="stat"><div class="num good">${good}</div><div class="label">2+ questions ✓</div></div>
+    `;
+
+    const tbody = document.getElementById("tbody");
+
+    function render(filter = "") {
+      const f = filter.toLowerCase();
+      const filtered = f ? rows.filter(r =>
+        r.hanzi.includes(filter) ||
+        r.pinyin.toLowerCase().includes(f) ||
+        r.english.toLowerCase().includes(f)
+      ) : rows;
+
+      tbody.innerHTML = filtered.map(r => {
+        const cls = r.answerCount === 0 ? "zero"
+                  : r.answerCount === 1 ? "low"
+                  : "ok";
+        return `
+          <tr class="${r.answerCount < 2 ? 'gap' : ''}">
+            <td>${r.hanzi}</td>
+            <td>${r.pinyin}</td>
+            <td>${r.english}</td>
+            <td class="count ${cls}">${r.answerCount}</td>
+            <td class="count">${r.distractorCount}</td>
+            <td class="count">${r.total}</td>
+          </tr>
+        `;
+      }).join("");
+    }
+
+    document.getElementById("filter")
+      .addEventListener("input", e => render(e.target.value));
+    render();
+  </script>
+</body>
+</html>
