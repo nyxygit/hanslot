@@ -2650,7 +2650,496 @@ const QUESTIONS = [
     { type: "quiz", answer: "了", options: ["了","着","过","的"] },
     { type: "quiz", answer: "三", options: ["三","两","四","五"] },
     { type: "quiz", answer: "年", options: ["年","月","天","星期"] },
-    { type: "fixed", answer: "。" }] }
+    { type: "fixed", answer: "。" }] },
+
+  // ============================================================
+  // Connectives — 虽然 如果 然后 因为 所以 还是 但是 可是 不过 应该
+  // ============================================================
+
+  // ---------- 虽然 ----------
+   {
+    english: "Although it was cold, I still went.",
+    category: "connectives",
+    slots: [
+      { type: "quiz", answer: "虽然", options: ["虽然", "因为", "如果", "还是"] },
+      { type: "fixed", answer: "很" },
+      { type: "quiz", answer: "冷", options: ["冷", "热", "好", "坏"] },
+      { type: "fixed", answer: "，" },
+      { type: "quiz", answer: "我", options: ["我", "你", "他", "她"] },
+      { type: "fixed", answer: "还是" },
+      { type: "quiz", answer: "去", options: ["去", "来", "回", "走"] },
+      { type: "fixed", answer: "了" },
+      { type: "fixed", answer: "。" }
+    ]
+  },
+  {
+    english: "Although he is busy, he is happy.",
+    category: "connectives",
+    slots: [
+      { type: "quiz", answer: "虽然", options: ["虽然", "因为", "如果", "还是"] },
+      { type: "quiz", answer: "他", options: ["他", "她", "我", "你"] },
+      { type: "fixed", answer: "很" },
+      { type: "quiz", answer: "忙", options: ["忙", "累", "高兴", "快乐"] },
+      { type: "fixed", answer: "，" },
+      { type: "quiz", answer: "可是", options: ["可是", "因为", "所以", "还是"] },
+      { type: "fixed", answer: "他" },
+      { type: "fixed", answer: "很" },
+      { type: "quiz", answer: "快乐", options: ["快乐", "高兴", "忙", "累"] },
+      { type: "fixed", answer: "。" }
+    ]
+  },
+  {
+    english: "Although this dish is expensive, it is delicious.",
+    category: "connectives",
+    slots: [
+      { type: "quiz", answer: "虽然", options: ["虽然", "因为", "如果", "还是"] },
+      { type: "quiz", answer: "这", options: ["这", "那", "我", "你"] },
+      { type: "fixed", answer: "个" },
+      { type: "quiz", answer: "菜", options: ["菜", "饭", "面条", "肉"] },
+      { type: "fixed", answer: "很" },
+      { type: "quiz", answer: "贵", options: ["贵", "便宜", "好", "大"] },
+      { type: "fixed", answer: "，" },
+      { type: "quiz", answer: "但是", options: ["但是", "因为", "所以", "还是"] },
+      { type: "quiz", answer: "好吃", options: ["好吃", "好看", "好玩", "好"] },
+      { type: "fixed", answer: "。" }
+    ]
+  },
+
+  // ---------- 如果 ----------
+  {
+    english: "If it rains tomorrow, I won't go.",
+    category: "connectives",
+    slots: [
+      { type: "quiz", answer: "如果", options: ["如果", "因为", "虽然", "还是"] },
+      { type: "quiz", answer: "明天", options: ["明天", "今天", "昨天", "现在"] },
+      { type: "quiz", answer: "下雨", options: ["下雨", "下雪", "天气", "天"] },
+      { type: "fixed", answer: "，" },
+      { type: "quiz", answer: "我", options: ["我", "你", "他", "她"] },
+      { type: "fixed", answer: "就" },
+      { type: "quiz", answer: "不", options: ["不", "没", "别", "太"] },
+      { type: "quiz", answer: "去", options: ["去", "来", "回", "走"] },
+      { type: "fixed", answer: "。" }
+    ]
+  },
+  {
+    english: "If you want to go, we'll go together.",
+    category: "connectives",
+    slots: [
+      { type: "quiz", answer: "如果", options: ["如果", "因为", "虽然", "还是"] },
+      { type: "quiz", answer: "你", options: ["你", "我", "他", "她"] },
+      { type: "quiz", answer: "想", options: ["想", "要", "会", "能"] },
+      { type: "quiz", answer: "去", options: ["去", "来", "回", "走"] },
+      { type: "fixed", answer: "，" },
+      { type: "quiz", answer: "我们", options: ["我们", "你们", "他们", "我"] },
+      { type: "fixed", answer: "就" },
+      { type: "quiz", answer: "一起", options: ["一起", "都", "也", "再"] },
+      { type: "fixed", answer: "去" },
+      { type: "fixed", answer: "。" }
+    ]
+  },
+  {
+    english: "If he doesn't come, I'll go home.",
+    category: "connectives",
+    slots: [
+      { type: "quiz", answer: "如果", options: ["如果", "因为", "虽然", "还是"] },
+      { type: "quiz", answer: "他", options: ["他", "她", "我", "你"] },
+      { type: "fixed", answer: "不" },
+      { type: "quiz", answer: "来", options: ["来", "去", "回", "走"] },
+      { type: "fixed", answer: "，" },
+      { type: "quiz", answer: "我", options: ["我", "你", "他", "她"] },
+      { type: "fixed", answer: "就" },
+      { type: "quiz", answer: "回", options: ["回", "去", "来", "走"] },
+      { type: "quiz", answer: "家", options: ["家", "学校", "商店", "公司"] },
+      { type: "fixed", answer: "。" }
+    ]
+  },
+
+  // ---------- 然后 ----------
+  {
+    english: "I eat first, then watch TV.",
+    category: "connectives",
+    slots: [
+      { type: "quiz", answer: "我", options: ["我", "你", "他", "她"] },
+      { type: "fixed", answer: "先" },
+      { type: "quiz", answer: "吃", options: ["吃", "喝", "买", "看"] },
+      { type: "quiz", answer: "饭", options: ["饭", "菜", "面条", "鱼"] },
+      { type: "fixed", answer: "，" },
+      { type: "quiz", answer: "然后", options: ["然后", "还是", "因为", "但是"] },
+      { type: "quiz", answer: "看", options: ["看", "听", "说", "学"] },
+      { type: "quiz", answer: "电视", options: ["电视", "电影", "音乐", "书"] },
+      { type: "fixed", answer: "。" }
+    ]
+  },
+  {
+    english: "He went to school, then went home.",
+    category: "connectives",
+    slots: [
+      { type: "quiz", answer: "他", options: ["他", "她", "我", "你"] },
+      { type: "fixed", answer: "去" },
+      { type: "fixed", answer: "了" },
+      { type: "quiz", answer: "学校", options: ["学校", "医院", "商店", "家"] },
+      { type: "fixed", answer: "，" },
+      { type: "quiz", answer: "然后", options: ["然后", "还是", "因为", "但是"] },
+      { type: "quiz", answer: "回", options: ["回", "去", "来", "走"] },
+      { type: "quiz", answer: "家", options: ["家", "学校", "商店", "公司"] },
+      { type: "fixed", answer: "了" },
+      { type: "fixed", answer: "。" }
+    ]
+  },
+  {
+    english: "We drink tea first, then eat.",
+    category: "connectives",
+    slots: [
+      { type: "quiz", answer: "我们", options: ["我们", "你们", "他们", "我"] },
+      { type: "fixed", answer: "先" },
+      { type: "quiz", answer: "喝", options: ["喝", "吃", "买", "看"] },
+      { type: "quiz", answer: "茶", options: ["茶", "水", "咖啡", "牛奶"] },
+      { type: "fixed", answer: "，" },
+      { type: "quiz", answer: "然后", options: ["然后", "还是", "因为", "但是"] },
+      { type: "quiz", answer: "吃", options: ["吃", "喝", "买", "看"] },
+      { type: "quiz", answer: "饭", options: ["饭", "菜", "面条", "鱼"] },
+      { type: "fixed", answer: "。" }
+    ]
+  },
+  {
+    english: "I eat bread first, then drink water.",
+    category: "connectives",
+    slots: [
+      { type: "quiz", answer: "我", options: ["我", "你", "他", "她"] },
+      { type: "fixed", answer: "先" },
+      { type: "quiz", answer: "吃", options: ["吃", "喝", "买", "看"] },
+      { type: "quiz", answer: "面包", options: ["面包", "米饭", "面条", "鸡蛋"] },
+      { type: "fixed", answer: "，" },
+      { type: "quiz", answer: "然后", options: ["然后", "还是", "因为", "但是"] },
+      { type: "quiz", answer: "喝", options: ["喝", "吃", "买", "看"] },
+      { type: "quiz", answer: "水", options: ["水", "牛奶", "茶", "咖啡"] },
+      { type: "fixed", answer: "。" }
+    ]
+  },
+
+  // ---------- 因为 / 所以 ----------
+  {
+    english: "Because it is raining, I'm not going.",
+    category: "connectives",
+    slots: [
+      { type: "quiz", answer: "因为", options: ["因为", "虽然", "如果", "还是"] },
+      { type: "quiz", answer: "下雨", options: ["下雨", "下雪", "天气", "天"] },
+      { type: "fixed", answer: "，" },
+      { type: "quiz", answer: "所以", options: ["所以", "但是", "还是", "如果"] },
+      { type: "quiz", answer: "我", options: ["我", "你", "他", "她"] },
+      { type: "quiz", answer: "不", options: ["不", "没", "别", "太"] },
+      { type: "quiz", answer: "去", options: ["去", "来", "回", "走"] },
+      { type: "fixed", answer: "了" },
+      { type: "fixed", answer: "。" }
+    ]
+  },
+  {
+    english: "Because she was tired, she went to sleep early.",
+    category: "connectives",
+    slots: [
+      { type: "quiz", answer: "因为", options: ["因为", "虽然", "如果", "还是"] },
+      { type: "quiz", answer: "她", options: ["她", "他", "我", "你"] },
+      { type: "fixed", answer: "很" },
+      { type: "quiz", answer: "累", options: ["累", "忙", "高兴", "快乐"] },
+      { type: "fixed", answer: "，" },
+      { type: "quiz", answer: "所以", options: ["所以", "但是", "还是", "如果"] },
+      { type: "fixed", answer: "很" },
+      { type: "fixed", answer: "早" },
+      { type: "fixed", answer: "就" },
+      { type: "quiz", answer: "睡觉", options: ["睡觉", "起床", "工作", "学习"] },
+      { type: "fixed", answer: "了" },
+      { type: "fixed", answer: "。" }
+    ]
+  },
+  {
+    english: "Because it is hot today, we all drank a lot of water.",
+    category: "connectives",
+    slots: [
+      { type: "quiz", answer: "因为", options: ["因为", "虽然", "如果", "还是"] },
+      { type: "fixed", answer: "今天" },
+      { type: "quiz", answer: "热", options: ["热", "冷", "好", "坏"] },
+      { type: "fixed", answer: "，" },
+      { type: "quiz", answer: "所以", options: ["所以", "但是", "还是", "如果"] },
+      { type: "quiz", answer: "我们", options: ["我们", "你们", "他们", "我"] },
+      { type: "fixed", answer: "都" },
+      { type: "quiz", answer: "喝", options: ["喝", "吃", "买", "看"] },
+      { type: "fixed", answer: "了" },
+      { type: "fixed", answer: "很多" },
+      { type: "quiz", answer: "水", options: ["水", "牛奶", "茶", "咖啡"] },
+      { type: "fixed", answer: "。" }
+    ]
+  },
+  {
+    english: "He is extremely busy, so he has no time.",
+    category: "connectives",
+    slots: [
+      { type: "quiz", answer: "他", options: ["他", "她", "我", "你"] },
+      { type: "quiz", answer: "非常", options: ["非常", "真", "最", "太"] },
+      { type: "quiz", answer: "忙", options: ["忙", "累", "高兴", "快乐"] },
+      { type: "fixed", answer: "，" },
+      { type: "quiz", answer: "所以", options: ["所以", "但是", "还是", "如果"] },
+      { type: "fixed", answer: "没有" },
+      { type: "quiz", answer: "时间", options: ["时间", "时候", "小时", "分钟"] },
+      { type: "fixed", answer: "。" }
+    ]
+  },
+  {
+    english: "She was tired today, so she went to sleep.",
+    category: "connectives",
+    slots: [
+      { type: "quiz", answer: "她", options: ["她", "他", "我", "你"] },
+      { type: "quiz", answer: "今天", options: ["今天", "明天", "昨天", "现在"] },
+      { type: "fixed", answer: "很" },
+      { type: "quiz", answer: "累", options: ["累", "忙", "高兴", "快乐"] },
+      { type: "fixed", answer: "，" },
+      { type: "quiz", answer: "所以", options: ["所以", "但是", "还是", "如果"] },
+      { type: "fixed", answer: "就" },
+      { type: "quiz", answer: "睡觉", options: ["睡觉", "起床", "工作", "学习"] },
+      { type: "fixed", answer: "了" },
+      { type: "fixed", answer: "。" }
+    ]
+  },
+  {
+    english: "He didn't come today, because he was busy.",
+    category: "connectives",
+    slots: [
+      { type: "quiz", answer: "他", options: ["他", "她", "我", "你"] },
+      { type: "quiz", answer: "今天", options: ["今天", "明天", "昨天", "现在"] },
+      { type: "fixed", answer: "没" },
+      { type: "quiz", answer: "来", options: ["来", "去", "回", "走"] },
+      { type: "fixed", answer: "，" },
+      { type: "quiz", answer: "因为", options: ["因为", "虽然", "如果", "还是"] },
+      { type: "fixed", answer: "他" },
+      { type: "fixed", answer: "很" },
+      { type: "quiz", answer: "忙", options: ["忙", "累", "高兴", "快乐"] },
+      { type: "fixed", answer: "。" }
+    ]
+  },
+
+  // ---------- 还是 ----------
+  {
+    english: "Do you drink tea or coffee?",
+    category: "connectives",
+    slots: [
+      { type: "quiz", answer: "你", options: ["你", "我", "他", "她"] },
+      { type: "quiz", answer: "喝", options: ["喝", "吃", "买", "看"] },
+      { type: "quiz", answer: "茶", options: ["茶", "水", "咖啡", "牛奶"] },
+      { type: "quiz", answer: "还是", options: ["还是", "和", "然后", "因为"] },
+      { type: "fixed", answer: "喝" },
+      { type: "quiz", answer: "咖啡", options: ["咖啡", "茶", "水", "牛奶"] },
+      { type: "fixed", answer: "？" }
+    ]
+  },
+  {
+    english: "Do you like apples or bananas?",
+    category: "connectives",
+    slots: [
+      { type: "quiz", answer: "你", options: ["你", "我", "他", "她"] },
+      { type: "quiz", answer: "喜欢", options: ["喜欢", "爱", "要", "想"] },
+      { type: "quiz", answer: "苹果", options: ["苹果", "香蕉", "橘子", "西瓜"] },
+      { type: "quiz", answer: "还是", options: ["还是", "和", "然后", "因为"] },
+      { type: "quiz", answer: "香蕉", options: ["香蕉", "苹果", "橘子", "西瓜"] },
+      { type: "fixed", answer: "？" }
+    ]
+  },
+  {
+    english: "Is he going today or tomorrow?",
+    category: "connectives",
+    slots: [
+      { type: "quiz", answer: "他", options: ["他", "她", "我", "你"] },
+      { type: "quiz", answer: "今天", options: ["今天", "明天", "昨天", "现在"] },
+      { type: "quiz", answer: "去", options: ["去", "来", "回", "走"] },
+      { type: "quiz", answer: "还是", options: ["还是", "和", "然后", "因为"] },
+      { type: "quiz", answer: "明天", options: ["明天", "今天", "昨天", "现在"] },
+      { type: "fixed", answer: "去" },
+      { type: "fixed", answer: "？" }
+    ]
+  },
+
+  // ---------- 但是 ----------
+  {
+    english: "He was busy today, but he still came.",
+    category: "connectives",
+    slots: [
+      { type: "quiz", answer: "他", options: ["他", "她", "我", "你"] },
+      { type: "quiz", answer: "今天", options: ["今天", "明天", "昨天", "现在"] },
+      { type: "fixed", answer: "很" },
+      { type: "quiz", answer: "忙", options: ["忙", "累", "高兴", "快乐"] },
+      { type: "fixed", answer: "，" },
+      { type: "quiz", answer: "但是", options: ["但是", "因为", "所以", "还是"] },
+      { type: "fixed", answer: "还是" },
+      { type: "quiz", answer: "来", options: ["来", "去", "回", "走"] },
+      { type: "fixed", answer: "了" },
+      { type: "fixed", answer: "。" }
+    ]
+  },
+  {
+    english: "I want to go, but I don't have time.",
+    category: "connectives",
+    slots: [
+      { type: "quiz", answer: "我", options: ["我", "你", "他", "她"] },
+      { type: "quiz", answer: "想", options: ["想", "要", "会", "能"] },
+      { type: "quiz", answer: "去", options: ["去", "来", "回", "走"] },
+      { type: "fixed", answer: "，" },
+      { type: "quiz", answer: "但是", options: ["但是", "因为", "所以", "还是"] },
+      { type: "fixed", answer: "没有" },
+      { type: "quiz", answer: "时间", options: ["时间", "时候", "小时", "分钟"] },
+      { type: "fixed", answer: "。" }
+    ]
+  },
+  {
+    english: "This dish is delicious, but too expensive.",
+    category: "connectives",
+    slots: [
+      { type: "quiz", answer: "这", options: ["这", "那", "我", "你"] },
+      { type: "fixed", answer: "个" },
+      { type: "quiz", answer: "菜", options: ["菜", "饭", "面条", "肉"] },
+      { type: "fixed", answer: "很" },
+      { type: "quiz", answer: "好吃", options: ["好吃", "好看", "好玩", "好"] },
+      { type: "fixed", answer: "，" },
+      { type: "quiz", answer: "但是", options: ["但是", "因为", "所以", "还是"] },
+      { type: "fixed", answer: "太" },
+      { type: "quiz", answer: "贵", options: ["贵", "便宜", "好", "大"] },
+      { type: "fixed", answer: "了" },
+      { type: "fixed", answer: "。" }
+    ]
+  },
+
+  // ---------- 可是 ----------
+  {
+    english: "I want to go, but he doesn't.",
+    category: "connectives",
+    slots: [
+      { type: "quiz", answer: "我", options: ["我", "你", "他", "她"] },
+      { type: "quiz", answer: "想", options: ["想", "要", "会", "能"] },
+      { type: "quiz", answer: "去", options: ["去", "来", "回", "走"] },
+      { type: "fixed", answer: "，" },
+      { type: "quiz", answer: "可是", options: ["可是", "因为", "所以", "还是"] },
+      { type: "quiz", answer: "他", options: ["他", "她", "我", "你"] },
+      { type: "fixed", answer: "不" },
+      { type: "fixed", answer: "想" },
+      { type: "fixed", answer: "去" },
+      { type: "fixed", answer: "。" }
+    ]
+  },
+  {
+    english: "He is tired today, but still working.",
+    category: "connectives",
+    slots: [
+      { type: "quiz", answer: "他", options: ["他", "她", "我", "你"] },
+      { type: "quiz", answer: "今天", options: ["今天", "明天", "昨天", "现在"] },
+      { type: "fixed", answer: "很" },
+      { type: "quiz", answer: "累", options: ["累", "忙", "高兴", "快乐"] },
+      { type: "fixed", answer: "，" },
+      { type: "quiz", answer: "可是", options: ["可是", "因为", "所以", "还是"] },
+      { type: "fixed", answer: "还" },
+      { type: "fixed", answer: "在" },
+      { type: "quiz", answer: "工作", options: ["工作", "学习", "睡觉", "起床"] },
+      { type: "fixed", answer: "。" }
+    ]
+  },
+  {
+    english: "I am tired today, but happy.",
+    category: "connectives",
+    slots: [
+      { type: "quiz", answer: "我", options: ["我", "你", "他", "她"] },
+      { type: "quiz", answer: "今天", options: ["今天", "明天", "昨天", "现在"] },
+      { type: "fixed", answer: "很" },
+      { type: "quiz", answer: "累", options: ["累", "忙", "高兴", "快乐"] },
+      { type: "fixed", answer: "，" },
+      { type: "quiz", answer: "可是", options: ["可是", "因为", "所以", "还是"] },
+      { type: "fixed", answer: "很" },
+      { type: "quiz", answer: "高兴", options: ["高兴", "快乐", "忙", "累"] },
+      { type: "fixed", answer: "。" }
+    ]
+  },
+
+  // ---------- 不过 ----------
+  {
+    english: "This computer is good, but too expensive.",
+    category: "connectives",
+    slots: [
+      { type: "quiz", answer: "这", options: ["这", "那", "我", "你"] },
+      { type: "fixed", answer: "个" },
+      { type: "quiz", answer: "电脑", options: ["电脑", "手机", "电视", "电话"] },
+      { type: "fixed", answer: "很" },
+      { type: "quiz", answer: "好", options: ["好", "坏", "忙", "累"] },
+      { type: "fixed", answer: "，" },
+      { type: "quiz", answer: "不过", options: ["不过", "因为", "所以", "还是"] },
+      { type: "fixed", answer: "太" },
+      { type: "quiz", answer: "贵", options: ["贵", "便宜", "好", "大"] },
+      { type: "fixed", answer: "了" },
+      { type: "fixed", answer: "。" }
+    ]
+  },
+  {
+    english: "His home is close, but I am busy.",
+    category: "connectives",
+    slots: [
+      { type: "quiz", answer: "他", options: ["他", "她", "我", "你"] },
+      { type: "quiz", answer: "家", options: ["家", "学校", "商店", "公司"] },
+      { type: "fixed", answer: "很" },
+      { type: "quiz", answer: "近", options: ["近", "远", "大", "小"] },
+      { type: "fixed", answer: "，" },
+      { type: "quiz", answer: "不过", options: ["不过", "因为", "所以", "还是"] },
+      { type: "fixed", answer: "我" },
+      { type: "fixed", answer: "很" },
+      { type: "quiz", answer: "忙", options: ["忙", "累", "高兴", "快乐"] },
+      { type: "fixed", answer: "。" }
+    ]
+  },
+  {
+    english: "He is happy, but a bit tired.",
+    category: "connectives",
+    slots: [
+      { type: "quiz", answer: "他", options: ["他", "她", "我", "你"] },
+      { type: "fixed", answer: "很" },
+      { type: "quiz", answer: "高兴", options: ["高兴", "快乐", "忙", "累"] },
+      { type: "fixed", answer: "，" },
+      { type: "quiz", answer: "不过", options: ["不过", "因为", "所以", "还是"] },
+      { type: "quiz", answer: "有点儿", options: ["有点儿", "一点儿", "很", "太"] },
+      { type: "quiz", answer: "累", options: ["累", "忙", "高兴", "快乐"] },
+      { type: "fixed", answer: "。" }
+    ]
+  },
+
+  // ---------- 应该 ----------
+  {
+    english: "You should drink more water.",
+    category: "connectives",
+    slots: [
+      { type: "quiz", answer: "你", options: ["你", "我", "他", "她"] },
+      { type: "quiz", answer: "应该", options: ["应该", "可以", "能", "会"] },
+      { type: "quiz", answer: "多", options: ["多", "少", "大", "小"] },
+      { type: "quiz", answer: "喝", options: ["喝", "吃", "买", "看"] },
+      { type: "quiz", answer: "水", options: ["水", "牛奶", "茶", "咖啡"] },
+      { type: "fixed", answer: "。" }
+    ]
+  },
+  {
+    english: "We should go to bed earlier.",
+    category: "connectives",
+    slots: [
+      { type: "quiz", answer: "我们", options: ["我们", "你们", "他们", "我"] },
+      { type: "quiz", answer: "应该", options: ["应该", "可以", "能", "会"] },
+      { type: "quiz", answer: "早", options: ["早", "晚", "快", "慢"] },
+      { type: "quiz", answer: "睡觉", options: ["睡觉", "起床", "工作", "学习"] },
+      { type: "fixed", answer: "。" }
+    ]
+  },
+  {
+    english: "He shouldn't drink too much beer.",
+    category: "connectives",
+    slots: [
+      { type: "quiz", answer: "他", options: ["他", "她", "我", "你"] },
+      { type: "fixed", answer: "不" },
+      { type: "quiz", answer: "应该", options: ["应该", "可以", "能", "会"] },
+      { type: "quiz", answer: "喝", options: ["喝", "吃", "买", "看"] },
+      { type: "quiz", answer: "太多", options: ["太多", "很少", "很多", "一点儿"] },
+      { type: "quiz", answer: "啤酒", options: ["啤酒", "茶", "水", "咖啡"] },
+      { type: "fixed", answer: "。" }
+    ]
+  }
 
 ];
 
@@ -2900,6 +3389,9 @@ const WORD_DATA = {
     "虽然":   { pinyin: "suīrán",      english: "although" },
     "而且":   { pinyin: "érqiě",       english: "moreover" },
     "然后":   { pinyin: "ránhòu",      english: "then" },
+    "还是":   { pinyin: "háishì",       english: "or (in a question)" },
+    "不过":   { pinyin: "bùguò",        english: "however, but" },
+    "应该":   { pinyin: "yīnggāi",      english: "should, ought to" },
   
     // --- Everyday nouns ---
     "人":     { pinyin: "rén",         english: "person" },

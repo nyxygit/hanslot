@@ -1,54 +1,274 @@
 * { box-sizing: border-box; }
 
-body {
+html, body {
   margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   background: #f5f5f5;
   color: #333;
-  min-height: 100vh;
+  overflow: hidden;
 }
 
-/* ---------- Layouts ---------- */
-.layout {
+#app {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+.app-wrap {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s ease-in-out;
+  transform-origin: center center;
+}
+
+.app-wrap.rotated {
+  transform: rotate(180deg);
+}
+
+/* ============================================================
+   SETUP (unchanged from previous version)
+   ============================================================ */
+.setup-layout {
+  height: 100%;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
-}
-
-.centered-layout {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  padding: 40px;
-}
-
-.main {
-  flex: 1;
-  display: flex;
   align-items: center;
   justify-content: center;
   padding: 40px;
+  overflow-y: auto;
 }
 
-.screen { width: 100%; max-width: 1100px; }
+.setup-layout h1 {
+  color: #4A90D9;
+  font-size: 52px;
+  margin: 0 0 6px;
+}
 
-/* ---------- Header bar ---------- */
+.setup-layout .subtitle {
+  color: #666;
+  font-size: 18px;
+  margin: 0 0 36px;
+}
+
+.setup-section {
+  width: 100%;
+  max-width: 720px;
+  margin-bottom: 28px;
+}
+
+.setup-section h3 {
+  font-size: 16px;
+  color: #666;
+  font-weight: 600;
+  margin: 0 0 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.count-buttons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+}
+
+.count-btn {
+  background: #fff;
+  color: #333;
+  border: 2px solid #ddd;
+  padding: 18px 40px;
+  font-size: 22px;
+  font-weight: 700;
+  border-radius: 14px;
+  cursor: pointer;
+  min-width: 110px;
+  transition: all 0.15s;
+}
+
+.count-btn:hover {
+  border-color: #4A90D9;
+}
+
+.count-btn.count-active {
+  background: #4A90D9;
+  color: #fff;
+  border-color: #4A90D9;
+}
+
+.category-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.chip {
+  background: #fff;
+  color: #333;
+  border: 2px solid #ddd;
+  padding: 10px 20px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 22px;
+  cursor: pointer;
+  width: auto;
+  transition: all 0.15s;
+}
+
+.chip:hover {
+  border-color: #4A90D9;
+}
+
+.chip.chip-active {
+  background: #4A90D9;
+  color: #fff;
+  border-color: #4A90D9;
+}
+
+.setup-warning {
+  background: #fff4e5;
+  color: #a05a00;
+  border: 1px solid #f0c089;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-size: 14px;
+  max-width: 720px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.primary-start {
+  background: #4CAF50;
+  color: #fff;
+  border: none;
+  padding: 22px 60px;
+  font-size: 22px;
+  font-weight: 700;
+  border-radius: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+  width: auto;
+  transition: background 0.15s;
+}
+
+.primary-start:hover {
+  background: #43a047;
+}
+
+.setup-links {
+  margin-top: 32px;
+  display: flex;
+  gap: 12px;
+}
+
+.link-btn {
+  background: transparent;
+  color: #4A90D9;
+  border: 2px solid #4A90D9;
+  padding: 10px 22px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 10px;
+  cursor: pointer;
+  width: auto;
+}
+
+.link-btn:hover {
+  background: #4A90D9;
+  color: #fff;
+}
+
+/* ============================================================
+   HANDOFF & TURN SUMMARY
+   ============================================================ */
+.handoff-layout {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+.handoff-card {
+  background: #fff;
+  border-radius: 24px;
+  padding: 60px 80px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  max-width: 640px;
+}
+
+.handoff-card h1 {
+  color: #4A90D9;
+  font-size: 38px;
+  margin: 0 0 20px;
+}
+
+.handoff-sub {
+  color: #333;
+  font-size: 22px;
+  margin: 0 0 8px;
+}
+
+.handoff-sub strong {
+  color: #4CAF50;
+}
+
+.handoff-note {
+  color: #888;
+  font-size: 16px;
+  margin: 0 0 36px;
+}
+
+/* Turn summary numbers */
+.summary-time {
+  font-size: 64px;
+  font-weight: 700;
+  color: #333;
+  font-variant-numeric: tabular-nums;
+  margin: 12px 0 6px;
+  line-height: 1;
+}
+
+.summary-penalty {
+  font-size: 18px;
+  color: #c62828;
+  margin-bottom: 6px;
+}
+
+.summary-total {
+  font-size: 22px;
+  font-weight: 700;
+  color: #4A90D9;
+  margin-bottom: 36px;
+}
+
+/* ============================================================
+   GAME (unchanged)
+   ============================================================ */
+.layout {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
 .header {
   background: #ffffff;
-  padding: 16px 32px;
+  padding: 14px 32px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
-  position: sticky;
-  top: 0;
-  z-index: 10;
+  flex-shrink: 0;
 }
 
 .back-btn {
   padding: 10px 22px;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
   background: #e8e8e8;
   color: #333;
@@ -57,86 +277,98 @@ body {
   cursor: pointer;
   width: auto;
 }
+
 .back-btn:hover { background: #d8d8d8; }
 
 .progress {
   color: #555;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
 }
 
-/* ---------- Home / Finished ---------- */
-h1 {
-  color: #4A90D9;
-  text-align: center;
-  margin: 0 0 12px;
-  font-size: 56px;
-}
-.subtitle {
-  text-align: center;
-  color: #666;
-  font-size: 20px;
-  margin-bottom: 56px;
-}
-.prompt {
-  text-align: center;
-  font-size: 22px;
-  margin-bottom: 32px;
-}
-.buttons {
+.timer-box {
   display: flex;
-  flex-direction: column;
-  gap: 16px;
   align-items: center;
+  gap: 10px;
 }
 
-/* ---------- Buttons ---------- */
-button {
-  background: #4A90D9;
-  color: white;
-  border: none;
-  padding: 18px 50px;
-  font-size: 20px;
-  font-weight: 600;
-  border-radius: 14px;
-  cursor: pointer;
-  width: 260px;
+.timer {
+  color: #333;
+  font-size: 18px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  min-width: 64px;
+  text-align: right;
 }
-button:hover { background: #3a7bc0; }
-button:disabled { background: #aaa; cursor: default; }
 
-.next-btn {
-  background: #4CAF50;
-  width: auto;
-  padding: 18px 60px;
+.penalty-badge {
+  color: #c62828;
+  font-size: 14px;
+  font-weight: 700;
+  background: #ffe5e5;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-variant-numeric: tabular-nums;
 }
-.next-btn:hover { background: #43a047; }
 
-/* ---------- Game screen ---------- */
+.main {
+  flex: 1;
+  display: flex;
+  overflow-y: auto;
+  padding: 30px;
+}
+
+.main > .screen {
+  margin: auto;
+}
+
+.screen {
+  width: 100%;
+  max-width: 1100px;
+}
+
 .english {
   text-align: center;
-  font-size: 34px;
+  font-size: 32px;
   font-weight: 700;
   line-height: 1.3;
-  margin: 12px 0 48px;
+  margin: 12px 0 42px;
+}
+
+.slots-viewport {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  /* height is set dynamically by JS when the row is scaled */
 }
 
 .slots-row {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
   gap: 14px;
+  flex-wrap: nowrap;
+  flex-shrink: 0;
+  width: max-content;
+  transform-origin: center top;
   margin-bottom: 20px;
 }
 
-/* ---------- Slots ---------- */
-.slot {
+.slot-wrap {
   height: 270px;
   width: 140px;
   position: relative;
+  flex-shrink: 0;
+}
+
+.slot {
+  height: 180px;
+  width: 140px;
+  position: relative;
+  overflow: hidden;
   user-select: none;
   cursor: pointer;
 }
+
 .slot.fixed { cursor: default; }
 
 .slot .item {
@@ -180,31 +412,30 @@ button:disabled { background: #aaa; cursor: default; }
   border-radius: 10px;
 }
 
-/* ---------- Pinyin + English under a correct slot ---------- */
 .pinyin-area {
   position: absolute;
-  top: 192px;
-  left: -8px;
-  right: -8px;
+  top: 195px;
+  left: -10px;
+  right: -10px;
   text-align: center;
   pointer-events: none;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2px;
+  gap: 3px;
   animation: fadeIn 0.25s ease-out;
 }
 
 .pinyin {
   color: #4A90D9;
-  font-size: 17px;
+  font-size: 18px;
   font-weight: 700;
   line-height: 1.2;
 }
 
 .translation {
   color: #666;
-  font-size: 12px;
+  font-size: 13px;
   line-height: 1.2;
   word-break: break-word;
 }
@@ -214,12 +445,31 @@ button:disabled { background: #aaa; cursor: default; }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ---------- Bottom area ---------- */
 .check-wrap {
   display: flex;
   justify-content: center;
   margin-top: 36px;
 }
+
+button {
+  background: #4A90D9;
+  color: white;
+  border: none;
+  padding: 18px 50px;
+  font-size: 20px;
+  font-weight: 600;
+  border-radius: 14px;
+  cursor: pointer;
+  width: auto;
+}
+
+button:hover { background: #3a7bc0; }
+
+.next-btn {
+  background: #4CAF50;
+  padding: 18px 60px;
+}
+.next-btn:hover { background: #43a047; }
 
 .message {
   text-align: center;
@@ -231,136 +481,137 @@ button:disabled { background: #aaa; cursor: default; }
 .message.error   { color: #c62828; }
 .message.success { color: #2e7d32; }
 
-/* ---------- Progress card on Home ---------- */
-.progress-card {
-    max-width: 520px;
-    margin: 0 auto 40px;
-    background: #fff;
-    border-radius: 14px;
-    padding: 20px 24px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-  }
-  .progress-label {
-    display: flex;
-    justify-content: space-between;
-    font-size: 14px;
-    color: #555;
-    margin-bottom: 8px;
-    font-weight: 600;
-  }
-  .progress-bar {
-    height: 12px;
-    background: #e8e8e8;
-    border-radius: 6px;
-    overflow: hidden;
-  }
-  .progress-fill {
-    height: 100%;
-    background: linear-gradient(90deg, #4A90D9, #4CAF50);
-    transition: width 0.4s ease-out;
-  }
-  .progress-percent {
-    text-align: right;
-    font-size: 13px;
-    color: #888;
-    margin-top: 6px;
-  }
-  
-  /* ---------- Secondary button (View Progress) ---------- */
-  .secondary-btn {
-    background: #e8e8e8;
-    color: #333;
-  }
-  .secondary-btn:hover { background: #d8d8d8; }
-  
-  /* ---------- Reset button in header ---------- */
-  .reset-btn {
-    background: #f0f0f0;
-    color: #c62828;
-    border: none;
-    padding: 8px 16px;
-    font-size: 14px;
-    font-weight: 600;
-    border-radius: 10px;
-    cursor: pointer;
-    width: auto;
-  }
-  .reset-btn:hover { background: #ffe5e5; }
-  
-  /* ---------- Progress screen grid ---------- */
-  .words-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 12px;
-    padding: 8px 0 40px;
-  }
-  .word-card {
-    background: #fff;
-    border-radius: 12px;
-    padding: 12px 10px;
-    text-align: center;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
-    border: 2px solid transparent;
-  }
-  .word-card.mastered {
-    border-color: #4CAF50;
-    background: #f1faf3;
-  }
-  .word-card.learning {
-    border-color: #FFC107;
-    background: #fffbf0;
-  }
-  .word-card.unseen {
-    border-color: #e0e0e0;
-    background: #fafafa;
-    opacity: 0.85;
-  }
-  .word-hanzi {
-    font-size: 26px;
-    font-weight: 700;
-    color: #333;
-    line-height: 1.2;
-  }
-  .word-pinyin {
-    font-size: 13px;
-    color: #4A90D9;
-    margin-top: 2px;
-    font-weight: 600;
-  }
-  .word-english {
-    font-size: 12px;
-    color: #666;
-    margin-top: 2px;
-    line-height: 1.3;
-  }
-  .word-count {
-    margin-top: 8px;
-    font-size: 13px;
-    font-weight: 700;
-    color: #555;
-  }
-  .word-card.mastered .word-count {
-    color: #2e7d32;
-  }
-  .word-card.learning .word-count {
-    color: #b8860b;
-  }
-  .word-card.unseen .word-count {
-    color: #aaa;
-  }
+/* ============================================================
+   RESULTS — container is rotated 180°; two stacked views + sidebar
+   ============================================================ */
+.results-layout {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  width: 100%;
+}
 
-  
-  /* ---------- Finished screen stat ---------- */
-  .finished-stat {
-    text-align: center;
-    color: #4A90D9;
-    font-size: 18px;
-    font-weight: 600;
-    margin-bottom: 32px;
-  }
+.scores-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
 
-  /* ============================================================
-   Sentence Browser
+.view {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  overflow: hidden;
+}
+
+/* P1's view is counter-rotated so P1 (at the physical bottom)
+   sees it right-side-up.  It sits at container-top, which after the
+   container rotation appears at the physical bottom. */
+.p1-view {
+  background: #f8fbff;
+  border-bottom: 2px solid #dfeaf7;
+  transform: rotate(180deg);
+}
+
+/* P2's view has no extra rotation.  It sits at container-bottom,
+   which after the container rotation appears at the physical top —
+   exactly where P2 is sitting. */
+.p2-view {
+  background: #fff8f8;
+}
+
+.view-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  width: 100%;
+  max-width: 520px;
+}
+
+.score-block {
+  background: #fff;
+  border-radius: 16px;
+  padding: 18px 32px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  width: 100%;
+  border: 3px solid transparent;
+}
+
+.score-block.score-winner {
+  border-color: #4CAF50;
+  background: #f1faf3;
+}
+
+.score-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: #4A90D9;
+  margin-bottom: 6px;
+}
+
+.score-total {
+  font-size: 40px;
+  font-weight: 700;
+  color: #333;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+}
+
+.score-detail {
+  font-size: 14px;
+  color: #888;
+  margin-top: 4px;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Sidebar on the physical left.
+   DOM order puts it last, so after the container's 180° rotation
+   it lands on the left.  Its own 180° counter-rotation makes it
+   readable by P1. */
+.buttons-sidebar {
+  width: 240px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+  transform: rotate(180deg);
+  background: #fafafa;
+  border-left: 2px solid #e0e0e0;
+}
+
+.action-btn {
+  width: 180px;
+  padding: 18px 20px;
+  font-size: 17px;
+  font-weight: 700;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.action-btn.primary {
+  background: #4CAF50;
+  color: #fff;
+}
+.action-btn.primary:hover { background: #43a047; }
+
+.action-btn.secondary {
+  background: #e8e8e8;
+  color: #333;
+}
+.action-btn.secondary:hover { background: #d8d8d8; }
+
+/* ============================================================
+   SENTENCE BROWSER (unchanged)
    ============================================================ */
 .sentence-count {
   color: #888;
@@ -406,6 +657,7 @@ button:disabled { background: #aaa; cursor: default; }
   align-items: baseline;
   gap: 12px;
   margin-bottom: 12px;
+  flex-wrap: wrap;
 }
 
 .sentence-number {
@@ -413,13 +665,22 @@ button:disabled { background: #aaa; cursor: default; }
   font-size: 13px;
   font-weight: 700;
   font-variant-numeric: tabular-nums;
-  flex-shrink: 0;
 }
 
 .sentence-english {
   color: #555;
   font-size: 17px;
   font-weight: 500;
+  flex: 1;
+}
+
+.sentence-tag {
+  background: #eef4fb;
+  color: #4A90D9;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 12px;
 }
 
 .sentence-hanzi {
